@@ -14,8 +14,16 @@ last_name () {
 	return
 }
 
+capture_output () {
+	ls -l > output.txt
+}
+
 #Main Program
 first_name
 last_name
 
 echo "Your name is $name $lname"
+
+capture_output
+
+
