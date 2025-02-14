@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Project 1: A menu driven program, designed to allow the user to select which system information they wish to view.
+
+echo "		System View		
+
+1. View all regular users on the system
+
+2. View your PID
+
+"
+# Functions
+view_users () {						# Displays all regular users
+	awk -F: '$3 >= 1000 {print $1}' /etc/passwd	
+}
+
+view_pid () {
+	id -u
+}
+
+
+# Main Program
+read -p "Enter a menu option: " menu_option
+
+if [[ $menu_option -eq 1 ]]; then				# Menu option 1
+	printf "\n"
+	echo "Displaying all regular users on the system:"
+	printf "\n"
+	view_users
+fi
+
+if [[ $menu_option -eq 2 ]]; then				# Menu option 2
+	printf "\n"
+	user_id=$(view_pid)
+	echo "Your PID is: $user_id"
+fi
+
+
