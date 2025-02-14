@@ -2,7 +2,20 @@
 
 #Read in a name and display it back to the user
 
-read -p "Enter your first name: " fname
-read -p "Enter your last name: " lname
 
-echo "Your name is $fname $lname."
+#Functions
+first_name () {
+	read -p "Enter your first name: " name
+	return
+}
+
+last_name () {
+	read -p "Enter your last name: " lname
+	return
+}
+
+#Main Program
+first_name
+last_name
+
+echo "Your name is $name $lname"
