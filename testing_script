@@ -2,28 +2,32 @@
 
 #Read in a name and display it back to the user
 
-
 #Functions
-first_name () {
-	read -p "Enter your first name: " name
+first_name () {						#Get the users first name
+	read -p "Enter your first name: " fname
 	return
-}
+}	
 
-last_name () {
+last_name () {						#Get the users last name
 	read -p "Enter your last name: " lname
 	return
 }
 
-capture_output () {
+capture_output () {				#Capture a listing of the directory to a text file
 	ls -l > output.txt
+	mv output.txt ../Practice
 }
 
 #Main Program
 first_name
 last_name
 
-echo "Your name is $name $lname"
+if [[ -z "$fname" || -z "$lname" ]]; then	#Check if a first name or last name is provided
+	echo "No name provided"
+	exit 1
+fi
 
-capture_output
+echo "Your name is $fname $lname"		#Display the users name back to them
 
+#capture_output
 
