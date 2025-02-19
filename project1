@@ -22,6 +22,7 @@ view_users () {						# Displays all regular users
 
 view_pid () {						# Displays current user PID
 	id -u
+	echo "You are user: $USER"
 }
 
 disk_space () {						# Show amount of disk space used/free
@@ -38,37 +39,53 @@ quit () {						# Quit the program
 
 
 # Main Program
-read -p "Enter a menu option: " menu_option
+while [[ "$menu_option -ne 5" ]]; do
+	read -p "Enter a menu option: " menu_option
 
-if [[ $menu_option -eq 1 ]]; then				# Menu option 1
-	printf "\n"
-	echo "	Displaying all regular users on the system:	"
-	printf "\n"
-	view_users
-	printf "\n"
+	if [[ $menu_option -eq 1 ]]; then				# Menu option 1
+		printf "\n"
+		echo "	Displaying all regular users on the system:	"
+		printf "\n"
+		view_users
+		printf "\n"
 
-elif [[ $menu_option -eq 2 ]]; then				# Menu option 2
-	printf "\n"
-	user_id=$(view_pid)
-	echo "Your PID is: $user_id"
-	printf "\n"
+	elif [[ $menu_option -eq 2 ]]; then				# Menu option 2
+		printf "\n"
+		user_id=$(view_pid)
+		echo "Your PID is: $user_id"
+		printf "\n"
 
-elif [[ $menu_option -eq 3 ]]; then				# Menu option 3
-	printf "\n"
-	echo "		Disk Space Available 		"
-	printf "\n"
-	disk_space
-	printf "\n"
+	elif [[ $menu_option -eq 3 ]]; then				# Menu option 3
+		printf "\n"
+		echo "		Disk Space Available 		"
+		printf "\n"
+		disk_space
+		printf "\n"
 
-elif [[ $menu_option -eq 4 ]]; then				# Menu option 4
-	printf "\n"
-	echo "		$USER's Group Membership	"
-	printf "\n"
-	view_groups
-	printf "\n"
+	elif [[ $menu_option -eq 4 ]]; then				# Menu option 4
+		printf "\n"
+		echo "		$USER's Group Membership	"
+		printf "\n"
+		view_groups
+		printf "\n"
 
-elif [[ $menu_option -eq 5 ]]; then				# Menu option 5
-	printf "\n"
-	echo "Quitting the program. Thank you!"
-	quit
-fi
+	elif [[ $menu_option -eq 5 ]]; then				# Menu option 5
+		printf "\n"
+		echo "Quitting the Program"
+		printf "\n"
+		break
+	fi
+done
+
+# Display quit messages
+quit_time=3
+while [[ "$quit_time" -ne 0 ]]; do
+	echo "Exiting in $quit_time"
+	quit_time=$((quit_time - 1))
+	sleep 1
+done
+
+# Run the quit function and exit the program
+printf "\n"
+echo "Thanks for using us! Goodbye!"
+quit
