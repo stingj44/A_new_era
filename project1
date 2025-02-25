@@ -34,58 +34,53 @@ view_groups () {					# View group membership of current user
 }
 
 quit () {						# Quit the program
+	quit_time=3
+	while [[ "$quit_time" -ne 0 ]]; do
+		echo "Exiting in $quit_time"
+		quit_time=$((quit_time - 1))
+		sleep 1
+	done
+
+	printf "\n"
+	echo "Thanks for using us! Goodbye!"
 	exit 1
 }
 
+# Main Program Loop
+while [[ "$menu_option" -ne 5 ]]; do
+	read -p "Enter here: " menu_option
+	case "$menu_option" in
+		1)	printf "\n"						# Menu option 1
+			echo "Displaying all regular users on the system:"
+			printf "\n"
+			view_users
+			printf "\n"
+			;;
 
-# Main Program
-while [[ "$menu_option -ne 5" ]]; do
-	read -p "Enter a menu option: " menu_option
+		2)	printf "\n"						# Menu option 2
+			user_id=$(view_pid)
+			echo "Your PID is: $user_id"
+			printf "\n"
+			;;
+			
+		3)	printf "\n"						# Menu option 3
+			echo "		Disk Space Available 		"
+			printf "\n"
+			disk_space
+			printf "\n"
+			;;
 
-	if [[ $menu_option -eq 1 ]]; then				# Menu option 1
-		printf "\n"
-		echo "	Displaying all regular users on the system:	"
-		printf "\n"
-		view_users
-		printf "\n"
-
-	elif [[ $menu_option -eq 2 ]]; then				# Menu option 2
-		printf "\n"
-		user_id=$(view_pid)
-		echo "Your PID is: $user_id"
-		printf "\n"
-
-	elif [[ $menu_option -eq 3 ]]; then				# Menu option 3
-		printf "\n"
-		echo "		Disk Space Available 		"
-		printf "\n"
-		disk_space
-		printf "\n"
-
-	elif [[ $menu_option -eq 4 ]]; then				# Menu option 4
-		printf "\n"
-		echo "		$USER's Group Membership	"
-		printf "\n"
-		view_groups
-		printf "\n"
-
-	elif [[ $menu_option -eq 5 ]]; then				# Menu option 5
-		printf "\n"
-		echo "Quitting the Program"
-		printf "\n"
-		break
-	fi
+		4)	printf "\n"						# Menu option 4
+			echo "		$USER's Group Membership	"
+			printf "\n"
+			view_groups
+			printf "\n"
+			;;
+			
+		5)	printf "\n"						# Menu option 5
+			echo "Quitting the Program"
+			printf "\n"
+			quit
+			;;
+	esac
 done
-
-# Display quit messages
-quit_time=3
-while [[ "$quit_time" -ne 0 ]]; do
-	echo "Exiting in $quit_time"
-	quit_time=$((quit_time - 1))
-	sleep 1
-done
-
-# Run the quit function and exit the program
-printf "\n"
-echo "Thanks for using us! Goodbye!"
-quit
