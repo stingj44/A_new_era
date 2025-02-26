@@ -1,0 +1,48 @@
+#!/bin/bash
+
+# Positional Parameters Boot Camp: An interactive program to help with learning/understanding positional parameters. This is 
+# mainly a tool to help with me understanding this concept in bash and being able to apply it directly.
+
+# Functions
+menu_choices () {
+	echo  '
+	1) What is a positional parameter?
+	2) Explanation of: $#
+	3) Explanation of: $*
+	4) Explanation of: $@
+	5) Explanation of quoting
+	6) Redisplay menu options
+	7) Quit the program
+	'
+}
+
+# Display the welcome message and menu
+echo '
+	Welcome to Positional Parameters Boot Camp!
+
+	This program will help you reinforce the 
+	idea of positional parameters in bash. The
+	goal here is show off different examples and
+	explain things where necessary. This is a 
+	menu driven program, see below for options:'
+menu_choices
+
+# Variables
+quit=0
+
+# Main Program Loop
+while [[ "$quit" -eq 0 ]]; do
+	read -p "Enter a menu option: " menu_option	#Get the users menu option
+
+	case "$menu_option" in
+		1)	printf "%70s\n\n" 'Positional Parameters'
+			printf "%119s\n\n" '- In Bash, positional parameters are special variables that represent arguments passed to a function or script.'
+			printf "%121s\n\n" '- By default, bash only allows direct access to 1 - 9, but you can reference parameters beyond 9 using braces {}.'
+			printf "%124s\n\n" '- Since these are variables, they are denoted with the $ and parameters can be accessed like $1, $2, $9, {$25}, etc.'
+			;;
+
+		6)	printf "\n"
+			echo "	Displaying Menu Options	"
+			menu_choices
+	esac
+done
