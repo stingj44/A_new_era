@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# Script to create a full backup. Using tar to create a compressed file of the entire system, excluding certain directories
-
-sudo tar -czpf backup.tar.gz --exclude={"/proc","/sys","/dev","/run","/mnt","/media","/tmp","/var/cache","/var/tmp"} /
