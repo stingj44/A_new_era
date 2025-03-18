@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# This is project #2 and the goal here is to write a script that can read and extract information from
-# /etc/passwd and display it in a more readable format. I want more practice with awk so I plan on using
-# awk to achieve this task.
-
-#Extract the Username, UID, and GID from /etc/passwd
-awk -F: 'BEGIN {printf "%-20s\t%-5s\t%-5s\n", "Username", "UID", "GID"} 
-	{printf "%-20s\t %-5s\t %-5s\n", $1, $3, $4}' /etc/passwd
