@@ -22,31 +22,54 @@ int get_name() {
 	return 0;
 }
 
-//Random for loop function
-int find_value() {
+//For loop count down function
+int countdown() {
 	int numbers[] = {1,2,3,4,5,6,7,8,9,10};
 	int size = sizeof(numbers) / sizeof(numbers[0]);
-	int guess = 0;
+	
+	//Loop through and count down
+	for (int i = size - 1; i >= 0; --i) {
+		sleep(1);
+		cout << numbers[i] << endl;
+	}
 
-	cout << "Guess a number between 1-10: ";
+	cout << endl << "BLAST OFF!" << endl;
+	return 0;
+}
+
+//While loop find value function
+int value_find() {
+	int numbers[] = {1,10,20,50,86,31,5,100,65,72};
+	int size = sizeof(numbers) / sizeof(numbers[0]);
+	int i = 0;
+	int guess = 0;
+	bool found = false;
+
+	//Take in the users guess
+	cout << "Guess any number between 1-100: ";
 	cin >> guess;
 
-	for (int i = 0; i < size; ++i) {
+	//Loop through the array and look for a match
+	while (i < size && found == false) {
 		cout << numbers[i] << endl;
-		sleep(1);
-
 		if (numbers[i] == guess) {
-			cout << endl << "Found!" << endl;
-			return 0;
+			cout << endl << "Found." << endl;
+			found = true;
 		}
+		++i;
 	}
-	cout << endl << "Not found" << endl;
-	return 1;
+
+	//If not found condition
+	if (!found)
+		cout << endl << "Not found." << endl;
+
+	return 0;
 }
 
 //Main Function
 int main() {
 	//get_name();
-	find_value();
+	countdown();	
+	//value_find();
 	return 0;
 }
