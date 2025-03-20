@@ -11,7 +11,7 @@ struct Record {
 	int release_yr;		//Release year
 };
 
-//Add a new record function
+//Add a new record
 int add_record(Record collection[], int &count) {
         char name[40] = {};
         char artist[40] = {};
@@ -37,17 +37,19 @@ int add_record(Record collection[], int &count) {
                 ++count;
         }
 
-        /*
-	cout << endl << "Album: " << collection[count].name;
-	cout << endl << "Artist: " << collection[count].artist;
-	cout << endl << "Released: " << collection[count].release_yr;
-	cout << endl << "Count: " << count << endl;
-	*/
-
 	return 0;
 }
 
+//Display the entire collection
+int displayall(Record collection[]) {
+	for (int i = 0; i < ARRSIZE; ++i) {
+		cout << endl << "Album: " << collection[i].name;
+		cout << endl << "Artist: " << collection[i].artist;
+		cout << endl << "Released: " << collection[i].release_yr << endl;
+	}
 
+	return 0;
+}
 //Main program
 int main() {
 	int count = 0;
@@ -55,6 +57,7 @@ int main() {
 	int quit = false;
 	Record collection[ARRSIZE] = {};
 	
+	//Main program loop
 	while (!quit) {
 		cout << endl << "Enter a menu choice: ";
 		cin >> menu_choice;
@@ -62,6 +65,12 @@ int main() {
 
 		if (menu_choice == 1)
 			add_record(collection, count);
+		else if (menu_choice == 2)
+			displayall(collection);
+		else if (menu_choice == 4) {
+			cout << endl << "Quitting the program. Goodbye." << endl;
+			quit = true;
+		}
 	}
 	return 0;
 }
