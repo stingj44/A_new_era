@@ -12,43 +12,56 @@ struct Record {
 };
 
 //Add a new record function
-int add_record() {
-	char name[40] = {};
-	char artist[40] = {};
-	int count = 0;
-	int index = 0;
-	Record collection[ARRSIZE] = {};
-	Record album;
+int add_record(Record collection[], int &count) {
+        char name[40] = {};
+        char artist[40] = {};
+        Record album;
 
-	//Album name
-	cout << "Enter the album name: ";
-	cin.getline(name, 40);
-	strcpy(album.name, name);
-	
-	//Artist name
-	cout << "Enter the artist name: ";
-	cin.getline(artist, 40);
-	strcpy(album.artist, artist);
+        //Album name
+        cout << endl << "Enter the album name: ";
+        cin.getline(name, 40);
+        strcpy(album.name, name);
 
-	//Release year
-	cout << "Enter the album release year: ";
-	cin >> album.release_yr;
-	++count;
+        //Artist name
+        cout << "Enter the artist name: ";
+        cin.getline(artist, 40);
+        strcpy(album.artist, artist);
 
-	if (count < ARRSIZE)
-	       	collection[count] = album;
-	
-	//Display results (to be rmd)
+        //Release year
+        cout << "Enter the album release year: ";
+        cin >> album.release_yr;
+
+        //Check if the collection is full before adding
+        if (count < ARRSIZE) {
+                collection[count] = album;
+                ++count;
+        }
+
+        /*
 	cout << endl << "Album: " << collection[count].name;
 	cout << endl << "Artist: " << collection[count].artist;
 	cout << endl << "Released: " << collection[count].release_yr;
 	cout << endl << "Count: " << count << endl;
+	*/
 
 	return 0;
 }
 
+
 //Main program
 int main() {
-	add_record();
+	int count = 0;
+	int menu_choice = 0;
+	int quit = false;
+	Record collection[ARRSIZE] = {};
+	
+	while (!quit) {
+		cout << endl << "Enter a menu choice: ";
+		cin >> menu_choice;
+		cin.ignore();
+
+		if (menu_choice == 1)
+			add_record(collection, count);
+	}
 	return 0;
 }
